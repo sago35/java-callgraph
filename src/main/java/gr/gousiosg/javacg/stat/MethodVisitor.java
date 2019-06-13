@@ -53,6 +53,15 @@ public class MethodVisitor extends EmptyVisitor {
         visitedClass = jc;
         mg = m;
         cp = mg.getConstantPool();
+        LineNumberGen[] x = mg.getLineNumbers();
+        if (x.length > 0) {
+            System.out.println("-:" + visitedClass.getClassName() + ":" + jc.getSourceFileName() + ":" + x[0].getSourceLine() + ":" + mg.getName() + "(" + argumentList(mg.getArgumentTypes()) + ")");
+            //format = "M:" + visitedClass.getClassName() + ":" + jc.getSourceFileName() + ":" + x[0].getSourceLine() + ":" + mg.getName() + "(" + argumentList(mg.getArgumentTypes()) + ")"
+            //    + " " + "(%s)%s:%s(%s)";
+        } else {
+            //format = "M:" + visitedClass.getClassName() + ":" + jc.getSourceFileName() + ":" + 0 + ":" + mg.getName() + "(" + argumentList(mg.getArgumentTypes()) + ")"
+            //    + " " + "(%s)%s:%s(%s)";
+        }
         format = "M:" + visitedClass.getClassName() + ":" + mg.getName() + "(" + argumentList(mg.getArgumentTypes()) + ")"
             + " " + "(%s)%s:%s(%s)";
     }
